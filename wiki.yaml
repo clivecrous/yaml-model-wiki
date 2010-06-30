@@ -1,0 +1,21 @@
+--- 
+:next_oid: 5
+:data: 
+  Page: 
+  - &id001 !ruby/object:Page 
+    title: welcome
+    id: 1
+  - &id002 !ruby/object:Page 
+    title: ruby
+    id: 3
+  Change: 
+  - !ruby/object:Change 
+    page: *id001
+    when: 2010-06-30 08:30:01.665336 +02:00
+    content: Hello and Welcome!
+    id: 2
+  - !ruby/object:Change 
+    page: *id002
+    when: 2010-06-30 08:30:25.108677 +02:00
+    content: awesomeness!
+    id: 4
