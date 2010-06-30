@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'wiki'
 
 set :run, false
