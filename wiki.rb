@@ -1,11 +1,11 @@
 require 'sinatra'
-require 'yaml/model'
+require 'yaml-model'
 
-Change = Class.new YAML::Model
+Change = Class.new YAML_Model
 
 TITLE_FORMAT = /[a-z]+(?:-[a-z]+)*/
 
-class Page < YAML::Model
+class Page < YAML_Model
   has :changes, Change
   type :title, String do |value|
     assert( value =~ /^#{TITLE_FORMAT}$/, "Invalid title format" )
@@ -13,7 +13,7 @@ class Page < YAML::Model
   init :title
 end
 
-class Change < YAML::Model
+class Change < YAML_Model
   type :page, Page
   type :when, Time
   type :content, String do |value|
@@ -24,7 +24,7 @@ class Change < YAML::Model
   end
 end
 
-YAML::Model.filename = 'wiki.yaml'
+YAML_Model.filename = 'wiki.yaml'
 
 class String
   def to_title
