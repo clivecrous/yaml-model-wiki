@@ -8,20 +8,18 @@ TITLE_FORMAT = /[a-z]+(?:-[a-z]+)*/
 class Page < YAML_Model
   has :changes, Change
   type :title, String do |value|
-    assert( value =~ /^#{TITLE_FORMAT}$/, "Invalid title format" )
+    raise "Invalid title format" unless value =~ /^#{TITLE_FORMAT}$/
   end
   init :title
 end
 
 class Change < YAML_Model
   type :page, Page
-  type :when, Time
+  type :when, Time, :default => Time.now
   type :content, String do |value|
-    assert( !value.strip.empty?, "Content cannot be empty" )
+    raise "Content cannot be empty" if value.strip.empty?
   end
-  init :page, :content do
-    @when = Time.now
-  end
+  init :page, :content
 end
 
 YAML_Model.filename = 'wiki.yaml'
